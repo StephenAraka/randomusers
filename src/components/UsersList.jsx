@@ -186,15 +186,15 @@ const UsersList = ({ users }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: "#f5f5f5" }}>
           <TableRow>
             <TableCell />
             <TableCell></TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Age</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>NAME</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>GENDER</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>AGE</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>EMAIL</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>PHONE</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
