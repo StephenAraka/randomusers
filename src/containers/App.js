@@ -8,7 +8,8 @@ import InputForm from '../components/InputForm';
 import UsersList from '../components/UsersList';
 
 export default function App() {
-  const [randomUsers, setRandomUsers] = useState([])
+  const [randomUsers, setRandomUsers] = useState([]);
+  const [gender, setGender] = useState('both');
 
   useEffect(() => {
     axios.get('https://randomuser.me/api/?results=5&exc=login')
@@ -27,8 +28,11 @@ export default function App() {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <InputForm />
+      <Container maxWidth="lg" sx={{ display: 'grid', gap: 2 }}>
+        <h1>Random Users</h1>
+        <InputForm
+          changeGender={(selectedGender) => setGender(selectedGender)}
+        />
         <UsersList users={randomUsers} />
       </Container>
     </>

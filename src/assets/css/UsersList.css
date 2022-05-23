@@ -30,7 +30,8 @@
 @media screen and (max-width: 768px) {
   .email__column,
   .phone__column,
-  .photo__column {
+  .photo__column,
+  .dob__column {
     display: none !important;
   }
 

@@ -64,7 +64,7 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
     handleSelect(name);
   }
 
-  const { age, phone, gender, dob, email, location, nationality, cell } = itemsToShow;
+  const { name, age, phone, gender, dob, email, location, nationality, cell } = itemsToShow;
 
   return (
     <div>
@@ -95,58 +95,51 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
           isDisabled
           isDefaultChecked
           label="Name"
+          isChecked={name}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Gender"
           name="gender"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={gender}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Age"
           name="age"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={age}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Email"
           name="email"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={email}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Phone"
           name="phone"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={phone}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Date of birth"
           name="dob"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={dob}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Location"
           name="location"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={location}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="Cell"
           name="cell"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={cell}
         />
         <CheckBoxItem
-          isDefaultChecked
           label="nationality"
           name="nationality"
           onChange={(e) => handleOptionSelect(e)}

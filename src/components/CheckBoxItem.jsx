@@ -11,9 +11,9 @@ const CheckBoxItem = ({ disableRipple, isDisabled, isDefaultChecked, label, onCh
         control={
           <Checkbox
             name={name}
-            defaultChecked={isDefaultChecked}
+            // defaultChecked={isDefaultChecked}
             onChange={onChange}
-          // checked={isChecked}
+            checked={isChecked}
           />
         }
         label={label}

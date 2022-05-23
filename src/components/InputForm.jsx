@@ -1,11 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import CountriesSelect from './CountriesSelect';
+import CustomButton from './Button';
 
-const InputForm = () => {
+const InputForm = ({ changeGender }) => {
+  const [countries, setCountries] = useState('');
+
+  const handleGenderSelect = ({ target }) => {
+    changeGender(target.value)
+  };
+
+  const submitOptions = () => {
+    console.log(countries)
+  }
+
   return (
-    <Box sx={{ bgcolor: '#cfe8fc' }}>
-      Input Form
-    </Box>
+    <Box sx={{
+      borderRadius: 2,
+      paddingY: '1rem',
+      paddingX: { xs: '1rem', sm: '1rem', md: '3rem', lg: '4rem' },
+      bgcolor: '#f5f5f5'
+    }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={2} md={2} lg={4}>
+          <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="both"
+              name="radio-buttons-group"
+              onChange={handleGenderSelect}
+            >
+              <FormControlLabel value="female" control={<Radio size="small" />} label="Female" />
+              <FormControlLabel value="male" control={<Radio size="small" />} label="Male" />
+              <FormControlLabel value="both" control={<Radio size="small" />} label="Both" />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6} md={8} lg={6}>
+          <Box>Select Countries</Box>
+          <CountriesSelect onChange={(countries) => setCountries(countries)} />
+        </Grid>
+        <Grid
+          sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
+          item xs={12} sm={4} md={2} lg={2}>
+          <Stack spacing={2} direction="row">
+            <CustomButton variant="outlined" label="Clear" onClick={() => null /*clearOptions*/} />
+            <CustomButton variant="contained" label="Search" onClick={submitOptions} />
+          </Stack>
+        </Grid>
+      </Grid>
+    </Box >
   );
 }
 
