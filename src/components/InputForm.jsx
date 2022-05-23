@@ -6,19 +6,18 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import CountriesSelect from './CountriesSelect';
 import CustomButton from './Button';
 
-const InputForm = ({ changeGender }) => {
-  const [countries, setCountries] = useState('');
+const InputForm = ({ changeGender, submit }) => {
+  const [countries, setCountries] = useState([]);
 
   const handleGenderSelect = ({ target }) => {
-    changeGender(target.value)
+    changeGender(target.value);
   };
 
-  const submitOptions = () => {
-    console.log(countries)
+  const submitCountries = () => {
+    submit(countries);
   }
 
   return (
@@ -52,10 +51,7 @@ const InputForm = ({ changeGender }) => {
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
           item xs={12} sm={4} md={2} lg={2}>
-          <Stack spacing={2} direction="row">
-            <CustomButton variant="outlined" label="Clear" onClick={() => null /*clearOptions*/} />
-            <CustomButton variant="contained" label="Search" onClick={submitOptions} />
-          </Stack>
+          <CustomButton variant="contained" label="Search" onClick={submitCountries} />
         </Grid>
       </Grid>
     </Box >

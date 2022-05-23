@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import ColumnsMenu from './ColumnsMenu';
 import Row from './TableRow';
 
-import formatData from '../utils/formatData';
+import formatData from '../utils/formatUserData';
 import '../assets/css/UsersList.css';
 
 const UsersList = ({ users }) => {
