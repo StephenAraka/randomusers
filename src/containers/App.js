@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import axios from 'axios';
 
 import InputForm from '../components/InputForm';
 import UsersList from '../components/UsersList';
 
 import formatCountries from '../utils/formatCountries';
+import usePeopleFetch from '../utils/usePeopleFetch';
 
 import '../assets/css/App.css';
 
 export default function App() {
-  const [randomUsers, setRandomUsers] = useState([]);
   const [gender, setGender] = useState('both');
+  const [page, setPage] = useState(1);
+  const [url, setUrl] = useState('https://randomuser.me/api/?results=5000')
 
   const handleSearch = (countries) => {
     const nationalities = countries.length > 0 ? `&nat=${formatCountries(countries)}` : '';
     const genderSelected = gender === 'both' ? '' : `&gender=${gender}`;
     let results = 50;
 
-    // axios.get(`https://randomuser.me/api/?results=${results}&exc=login${genderSelected}${nationalities}`)
-    axios.get(`https://randomuser.me/api/?results=${results}&exc=login${genderSelected}${nationalities}`)
-      .then(function (res) {
-        setRandomUsers(res.data?.results);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        console.log('done!');
-      });
+    setUrl(`https://randomuser.me/api/?results=${results}&exc=login${genderSelected}${nationalities}`);
 
+    setPage(1);
   }
+
+  const {
+    randomUsers,
+    isLoading,
+    error,
+    hasMore
+  } = usePeopleFetch(url);
 
   return (
     <>
