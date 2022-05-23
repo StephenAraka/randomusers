@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import csvDownload from 'json-to-csv-export'
+
 import Box from '@mui/material/Box';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -11,7 +13,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 import CountriesSelect from './CountriesSelect';
 import CustomButton from './Button';
 
-const InputForm = ({ changeGender, submit }) => {
+import formatData from '../utils/formatUserData';
+
+const InputForm = ({ changeGender, submit, data }) => {
   const [countries, setCountries] = useState([]);
 
   const handleGenderSelect = ({ target }) => {
@@ -20,6 +24,14 @@ const InputForm = ({ changeGender, submit }) => {
 
   const submitCountries = () => {
     submit(countries);
+  }
+
+  const generateCSV = () => {
+    let dataArray = [];
+
+    data.forEach((user) => dataArray.push(formatData(user)))
+
+    csvDownload(dataArray);
   }
 
   return (
@@ -53,7 +65,13 @@ const InputForm = ({ changeGender, submit }) => {
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
           item xs={12} sm={4} md={2} lg={2}>
-          {true && <CustomButton icon={<DownloadIcon />} variant="outlined" label="Download" onClick={() => null} />}
+          {data.length > 0 && (
+            <CustomButton
+              icon={<DownloadIcon />}
+              variant="outlined"
+              label="Download"
+              onClick={generateCSV}
+            />)}
         </Grid>
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}

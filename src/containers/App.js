@@ -18,7 +18,7 @@ const App = () => {
   const [randomUsers, setRandomUsers] = useState([]);
   const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [hasMore, setHasMore] = useState(false);
+  // const [hasMore, setHasMore] = useState(false);
 
   const handleSearch = (countries) => {
     const nationalities = countries.length > 0 ? `&nat=${formatCountries(countries)}` : '';
@@ -57,11 +57,10 @@ const App = () => {
 
     axios.get(url, { cancelToken: new axios.CancelToken(c => cancel = c) })
       .then((res => {
-        console.log("fetching...", url)
         setRandomUsers(prevUsers => {
           return [...new Set([...prevUsers, ...res.data?.results])]
         })
-        setHasMore(res.data?.results.length > 0);
+        // setHasMore(res.data?.results.length > 0);
         setisLoading(false);
       }))
       .catch((e) => {
@@ -78,6 +77,7 @@ const App = () => {
       <Container maxWidth="lg" sx={{ display: 'grid', gap: 2 }}>
         <h1>Random Users</h1>
         <InputForm
+          data={randomUsers}
           changeGender={(selectedGender) => setGender(selectedGender)}
           submit={handleSearch}
         />
