@@ -6,6 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
+import DownloadIcon from '@mui/icons-material/Download';
+
 import CountriesSelect from './CountriesSelect';
 import CustomButton from './Button';
 
@@ -29,7 +31,7 @@ const InputForm = ({ changeGender, submit }) => {
     }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={2} md={2} lg={4}>
+        <Grid item xs={12} sm={4} md={2} lg={4}>
           <FormControl>
             <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
             <RadioGroup
@@ -44,9 +46,14 @@ const InputForm = ({ changeGender, submit }) => {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6} md={8} lg={6}>
+        <Grid item xs={12} sm={8} md={6} lg={4}>
           <Box>Select Countries</Box>
           <CountriesSelect onChange={(countries) => setCountries(countries)} />
+        </Grid>
+        <Grid
+          sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
+          item xs={12} sm={4} md={2} lg={2}>
+          {true && <CustomButton icon={<DownloadIcon />} variant="outlined" label="Download" onClick={() => null} />}
         </Grid>
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
