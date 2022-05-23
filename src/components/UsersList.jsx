@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -48,7 +49,7 @@ const UsersList = ({ users }) => {
             {users.map((user) => (
               <Row
                 showItems={showMenuItems}
-                key={Math.floor(Math.random() * 1000)}
+                key={uuidv4()}
                 user={formatData(user)}
               />
             ))}

@@ -15,22 +15,23 @@ export default function App() {
   const [gender, setGender] = useState('both');
 
   const handleSearch = (countries) => {
-    console.log(formatCountries(countries));
+    const nationalities = countries.length > 0 ? `&nat=${formatCountries(countries)}` : '';
+    const genderSelected = gender === 'both' ? '' : `&gender=${gender}`;
+    let results = 50;
+
+    // axios.get(`https://randomuser.me/api/?results=${results}&exc=login${genderSelected}${nationalities}`)
+    axios.get(`https://randomuser.me/api/?results=${results}&exc=login${genderSelected}${nationalities}`)
+      .then(function (res) {
+        setRandomUsers(res.data?.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        console.log('done!');
+      });
+
   }
-
-  // useEffect(() => {
-  //   axios.get('https://randomuser.me/api/?results=5&exc=login')
-  //     .then(function (res) {
-  //       setRandomUsers(res.data?.results);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     })
-  //     .then(function () {
-  //       console.log('done!');
-  //     });
-  // }, [])
-
 
   return (
     <>
