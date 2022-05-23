@@ -4,6 +4,7 @@
 
 .table__wrapper {
   position: relative;
+  padding-bottom: 1rem;
 }
 
 .table__heading {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const usePeopleFetch = (url) => {
+const usePeopleFetch = (url, page) => {
   const [randomUsers, setRandomUsers] = useState([]);
   const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -15,6 +15,7 @@ const usePeopleFetch = (url) => {
 
     axios.get(url, { cancelToken: new axios.CancelToken(c => cancel = c) })
       .then((res => {
+        console.log("fetching...", url)
         setRandomUsers(prevUsers => {
           return [...new Set([...prevUsers, ...res.data?.results])]
         })
@@ -27,7 +28,7 @@ const usePeopleFetch = (url) => {
       });
 
     return () => cancel();
-  }, [url]);
+  }, [page, url]);
 
   return { randomUsers, isLoading, error, hasMore };
 
