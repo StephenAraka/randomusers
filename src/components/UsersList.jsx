@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -36,34 +35,11 @@ import ManIcon from '@mui/icons-material/Man';
 import WomanIcon from '@mui/icons-material/Woman';
 import TtyIcon from '@mui/icons-material/Tty';
 
+import formatData from '../utils/formatData';
 import '../assets/css/UsersList.css';
 
-const createData = ({ phone, dob, email, gender, location, name, registered, picture, nat, cell }) => {
-  const { first, last } = name;
-  const { street, city, state } = location;
-  const { age } = dob;
-  const { date } = registered;
-
-  const user = {
-    name: `${first} ${last}`,
-    gender,
-    street: `${street.number}, ${street.name}`,
-    address: `${city} - ${state}`,
-    email,
-    age,
-    dateOfBirth: moment(dob.date).format("MMM Do YY"),
-    registrationSeniority: moment(date).fromNow(),
-    phone,
-    cell,
-    picture,
-    nationality: nat
-  };
-
-  return user;
-}
-
 const Row = (props) => {
-  const { user } = props;
+  const { user, showItems } = props;
   const [open, setOpen] = useState(false);
   const {
     name,
@@ -96,19 +72,21 @@ const Row = (props) => {
           {!open && <Avatar alt={name} src={picture.thumbnail} />}
         </TableCell>
         <TableCell>{name}</TableCell>
-        <TableCell>{gender === 'male' ? (
-          <Tooltip title="Male">
-            <ManIcon sx={{ color: '#019ef5' }} />
-          </Tooltip>
-        ) : (
-          <Tooltip title="Female">
-            <WomanIcon sx={{ color: '#e647a1' }} />
-          </Tooltip>
+        {showItems.gender && (
+          <TableCell>{gender === 'male' ? (
+            <Tooltip title="Male">
+              <ManIcon sx={{ color: '#019ef5' }} />
+            </Tooltip>
+          ) : (
+            <Tooltip title="Female">
+              <WomanIcon sx={{ color: '#e647a1' }} />
+            </Tooltip>
+          )}
+          </TableCell>
         )}
-        </TableCell>
-        <TableCell>{age}</TableCell>
-        <TableCell>{email}</TableCell>
-        <TableCell>{phone}</TableCell>
+        {showItems.age && <TableCell>{age}</TableCell>}
+        {showItems.email && <TableCell>{email}</TableCell>}
+        {showItems.phone && <TableCell>{phone}</TableCell>}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -129,30 +107,38 @@ const Row = (props) => {
                       </ListItemIcon>
                       <ListItemText primary={`Registered: ${registrationSeniority}`} />
                     </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemIcon>
-                        <LocalPhoneIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={`Phone: ${phone}`} />
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemIcon>
-                        <TtyIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={`Cell: ${cell}`} />
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemIcon>
-                        <LocationOnIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={`Location: ${street}. ${address}`} />
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemIcon>
-                        <FlagIcon />
-                      </ListItemIcon>
-                      <ListItemText primary={`Nationality: ${nationality}`} />
-                    </ListItem>
+                    {(!showItems.phone || showItems.cell) && (
+                      <ListItem disablePadding>
+                        <ListItemIcon>
+                          <LocalPhoneIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Phone: ${phone}`} />
+                      </ListItem>
+                    )}
+                    {showItems.cell && (
+                      <ListItem disablePadding>
+                        <ListItemIcon>
+                          <TtyIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Cell: ${cell}`} />
+                      </ListItem>
+                    )}
+                    {showItems.location && (
+                      <ListItem disablePadding>
+                        <ListItemIcon>
+                          <LocationOnIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Location: ${street}. ${address}`} />
+                      </ListItem>
+                    )}
+                    {showItems.nationality && (
+                      <ListItem disablePadding>
+                        <ListItemIcon>
+                          <FlagIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Nationality: ${nationality}`} />
+                      </ListItem>
+                    )}
                   </List>
                 </Grid>
               </Grid>
@@ -186,14 +172,14 @@ Row.propTypes = {
 };
 
 const UsersList = ({ users }) => {
-  const [menuItems, setMenuItems] = useState({
+  const [showMenuItems, setMenuItems] = useState({
     gender: true,
     age: true,
     email: true,
     phone: true,
     dob: true,
     location: false,
-    cell: false,
+    cell: true,
     nationality: true
   });
 
@@ -206,23 +192,27 @@ const UsersList = ({ users }) => {
               <TableCell />
               <TableCell></TableCell>
               <TableCell>NAME</TableCell>
-              <TableCell>GENDER</TableCell>
-              <TableCell>AGE</TableCell>
-              <TableCell>EMAIL</TableCell>
-              <TableCell>PHONE</TableCell>
+              {showMenuItems.gender && <TableCell>GENDER</TableCell>}
+              {showMenuItems.age && <TableCell>AGE</TableCell>}
+              {showMenuItems.email && <TableCell>EMAIL</TableCell>}
+              {showMenuItems.phone && <TableCell>PHONE</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((user) => (
-              <Row key={Math.floor(Math.random() * 1000)} user={createData(user)} />
+              <Row
+                showItems={showMenuItems}
+                key={Math.floor(Math.random() * 1000)}
+                user={formatData(user)}
+              />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
       <Box className="add__columns">
         <ColumnsMenu
-          itemsToShow={menuItems}
-          handleSelect={(item) => setMenuItems({ ...menuItems, [item]: !menuItems[item] })}
+          itemsToShow={showMenuItems}
+          handleSelect={(item) => setMenuItems({ ...showMenuItems, [item]: !showMenuItems[item] })}
         />
       </Box>
     </Box>
