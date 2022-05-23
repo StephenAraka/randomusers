@@ -13,7 +13,7 @@ const CheckBoxItem = ({ disableRipple, isDisabled, isDefaultChecked, label, onCh
             name={name}
             defaultChecked={isDefaultChecked}
             onChange={onChange}
-            checked={isChecked}
+          // checked={isChecked}
           />
         }
         label={label}

@@ -68,7 +68,7 @@ const Row = (props) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell className='photo__column' component="th" scope="row">
           {!open && <Avatar alt={name} src={picture.thumbnail} />}
         </TableCell>
         <TableCell>{name}</TableCell>
@@ -85,8 +85,8 @@ const Row = (props) => {
           </TableCell>
         )}
         {showItems.age && <TableCell>{age}</TableCell>}
-        {showItems.email && <TableCell>{email}</TableCell>}
-        {showItems.phone && <TableCell>{phone}</TableCell>}
+        {showItems.email && <TableCell className='email__column'>{email}</TableCell>}
+        {showItems.phone && <TableCell className='phone__column'>{phone}</TableCell>}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -96,10 +96,10 @@ const Row = (props) => {
                 More Details:
               </Typography>
               <Grid container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item xs={12} sm={6} md={6} lg={4}>
                   <img alt={name} src={picture.large} loading="lazy" className='details__img' />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} sm={6} md={6} lg={8}>
                   <List>
                     <ListItem disablePadding>
                       <ListItemIcon>
@@ -107,7 +107,15 @@ const Row = (props) => {
                       </ListItemIcon>
                       <ListItemText primary={`Registered: ${registrationSeniority}`} />
                     </ListItem>
-                    {(!showItems.phone || showItems.cell) && (
+                    {showItems.email && (
+                      <ListItem disablePadding>
+                        <ListItemIcon>
+                          <AccessTimeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Email: ${email}`} />
+                      </ListItem>
+                    )}
+                    {!showItems.phone && (
                       <ListItem disablePadding>
                         <ListItemIcon>
                           <LocalPhoneIcon />
@@ -190,12 +198,12 @@ const UsersList = ({ users }) => {
           <TableHead className="table__heading">
             <TableRow>
               <TableCell />
-              <TableCell></TableCell>
+              <TableCell className='photo__column'></TableCell>
               <TableCell>NAME</TableCell>
               {showMenuItems.gender && <TableCell>GENDER</TableCell>}
               {showMenuItems.age && <TableCell>AGE</TableCell>}
-              {showMenuItems.email && <TableCell>EMAIL</TableCell>}
-              {showMenuItems.phone && <TableCell>PHONE</TableCell>}
+              {showMenuItems.email && <TableCell className='email__column'>EMAIL</TableCell>}
+              {showMenuItems.phone && <TableCell className='phone__column'>PHONE</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>

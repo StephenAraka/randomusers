@@ -26,3 +26,15 @@
   position: absolute;
   background-color: #f5f5f5;
 }
+
+@media screen and (max-width: 768px) {
+  .email__column,
+  .phone__column,
+  .photo__column {
+    display: none !important;
+  }
+
+  .add__columns {
+    left: .5rem;
+  }
+}

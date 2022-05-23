@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import AddIcon from '@mui/icons-material/Add';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import CheckBoxItem from './CheckBoxItem';
 
@@ -69,6 +69,8 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
   return (
     <div>
       <Button
+        size='small'
+        style={{ padding: 0, backgroundColor: 'transparent' }}
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
@@ -77,7 +79,7 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
         disableElevation
         onClick={handleClick}
       >
-        <AddIcon />
+        <MoreVertIcon sx={{ color: 'black' }} />
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -146,7 +148,7 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
         <CheckBoxItem
           isDefaultChecked
           label="nationality"
-          name="dobnationality"
+          name="nationality"
           onChange={(e) => handleOptionSelect(e)}
           isChecked={nationality}
         />
