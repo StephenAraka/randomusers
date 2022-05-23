@@ -23,6 +23,8 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
+import ColumnsMenu from './ColumnsMenu';
+
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -163,47 +165,67 @@ const Row = (props) => {
 }
 
 Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
+  user: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
+    gender: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
+    dateOfBirth: PropTypes.string.isRequired,
+    registrationSeniority: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    cell: PropTypes.string.isRequired,
+    picture: PropTypes.shape({
+      thumbnail: PropTypes.string,
+      medium: PropTypes.string,
+      large: PropTypes.string,
+    }).isRequired,
+    nationality: PropTypes.string.isRequired,
   }).isRequired,
 };
 
 const UsersList = ({ users }) => {
-  console.log("uersrs", users)
+  const [menuItems, setMenuItems] = useState({
+    gender: true,
+    age: true,
+    email: true,
+    phone: true,
+    dob: true,
+    location: false,
+    cell: false,
+    nationality: true
+  });
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead sx={{ backgroundColor: "#f5f5f5" }}>
-          <TableRow>
-            <TableCell />
-            <TableCell></TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>NAME</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>GENDER</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>AGE</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>EMAIL</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>PHONE</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user) => (
-            <Row user={createData(user)} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box className="table__wrapper">
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead className="table__heading">
+            <TableRow>
+              <TableCell />
+              <TableCell></TableCell>
+              <TableCell>NAME</TableCell>
+              <TableCell>GENDER</TableCell>
+              <TableCell>AGE</TableCell>
+              <TableCell>EMAIL</TableCell>
+              <TableCell>PHONE</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => (
+              <Row key={Math.floor(Math.random() * 1000)} user={createData(user)} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Box className="add__columns">
+        <ColumnsMenu
+          itemsToShow={menuItems}
+          handleSelect={(item) => setMenuItems({ ...menuItems, [item]: !menuItems[item] })}
+        />
+      </Box>
+    </Box>
   );
 }
 

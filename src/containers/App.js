@@ -23,8 +23,6 @@ export default function App() {
       });
   }, [])
 
-  console.log(randomUsers)
-
 
   return (
     <>

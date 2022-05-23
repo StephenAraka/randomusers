@@ -1,3 +1,28 @@
 .details__img {
   width: 200px;
 }
+
+.table__wrapper {
+  position: relative;
+}
+
+.table__heading {
+  background-color: #f5f5f5;
+}
+
+.table__heading th {
+  font-weight: bold;
+}
+
+.add__columns {
+  position: absolute;
+  top: .8rem;
+  right: .5rem;
+  display: flex;
+  align-items: center;
+}
+
+.columns__list {
+  position: absolute;
+  background-color: #f5f5f5;
+}
