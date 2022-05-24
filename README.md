@@ -1,2 +1,2 @@
 # randomusers - (Angular 🅰️)
-Angular implementation of thr randomusers app
+Angular implementation of the randomusers app
