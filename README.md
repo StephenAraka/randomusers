@@ -13,6 +13,7 @@ by Stephen Gift Mukoya Araka
 
 
 _Below is a simple mockup design of the app's UI:_
+
 ![application UI design](docs/images/design.png)
 
 ## Instructions
@@ -42,6 +43,7 @@ _Below is a simple mockup design of the app's UI:_
 6. This will open `http://localhost:3000` in your browser where the application should be running 🤟`
 
 _Below is a preview of the running application:_
+
 ![running application](docs/images/app-running.png)
 
 ### 2. Testing the application
@@ -51,7 +53,9 @@ _Below is a preview of the running application:_
 3. In the app's root folder, run the following command to start cypress:
 &nbsp; `$ npx cypress open`
 4. Use the cypress interface to run the test named `search_spec.js`
+
 _Below is a preview of the e2e testing of the application using cypress:_
+
 ![cypress E2E tests](docs/images//e2e.gif)
 
 
