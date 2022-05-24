@@ -1,0 +1,42 @@
+.details__img {
+  width: 200px;
+}
+
+.table__wrapper {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.table__heading {
+  background-color: #f5f5f5;
+}
+
+.table__heading th {
+  font-weight: bold;
+}
+
+.add__columns {
+  position: absolute;
+  top: .8rem;
+  right: .5rem;
+  display: flex;
+  align-items: center;
+}
+
+.columns__list {
+  position: absolute;
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 768px) {
+  .email__column,
+  .phone__column,
+  .photo__column,
+  .dob__column {
+    display: none !important;
+  }
+
+  .add__columns {
+    left: .5rem;
+  }
+}
