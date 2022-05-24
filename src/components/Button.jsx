@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 
-const CustomButton = ({ icon, variant, onClick, label }) => {
+const CustomButton = ({ disabled, icon, variant, onClick, label }) => {
   return (
     <Button
+      disabled={disabled}
       startIcon={icon}
       sx={{ maxWidth: 310 }}
       onClick={onClick}

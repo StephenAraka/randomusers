@@ -54,7 +54,7 @@ const CountriesSelect = ({ onChange }) => {
 
   useEffect(() => {
     onChange(countryName)
-  }, [countryName])
+  }, [countryName, onChange])
 
 
 

@@ -65,13 +65,13 @@ const InputForm = ({ changeGender, submit, data }) => {
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
           item xs={12} sm={4} md={2} lg={2}>
-          {data.length > 0 && (
-            <CustomButton
-              icon={<DownloadIcon />}
-              variant="outlined"
-              label="Download"
-              onClick={generateCSV}
-            />)}
+          <CustomButton
+            disabled={data.length === 0}
+            icon={<DownloadIcon />}
+            variant="outlined"
+            label="Download"
+            onClick={generateCSV}
+          />
         </Grid>
         <Grid
           sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}
