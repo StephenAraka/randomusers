@@ -1,4 +1,4 @@
-# randomusers - (React🔯)
+# randomusers
 by Stephen Gift Mukoya Araka 
 
 
@@ -56,6 +56,5 @@ _Below is a preview of the e2e testing of the application using cypress:_
 
 
 ## Recommened improvements
-- Originally, the intention was to implement the application in both [React](https://github.com/StephenAraka/randomusers/tree/react) and [Angular](https://github.com/StephenAraka/randomusers/tree/angular).
-- Given more time, I will implement the Angular version of the application in the [angular github branch](https://github.com/StephenAraka/randomusers/tree/react).
-- More tests - _both E2E and Unit Tests_
+- Originally, the intention was to implement the application in both [React](https://github.com/StephenAraka/randomusers/tree/react) and [Angular](https://github.com/StephenAraka/randomusers/tree/angular). Given more time, I will implement the Angular version of the application in the [angular github branch](https://github.com/StephenAraka/randomusers/tree/angular).
+- More testing - _both E2E and Unit Tests_
