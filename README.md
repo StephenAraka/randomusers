@@ -1,4 +1,5 @@
 # randomusers - (React🔯)
+React implementation of the randomusers app
 by Stephen Gift Mukoya Araka 
 
 
