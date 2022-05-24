@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import csvDownload from 'json-to-csv-export'
 
 import Box from '@mui/material/Box';
@@ -82,5 +83,11 @@ const InputForm = ({ changeGender, submit, data }) => {
     </Box >
   );
 }
+
+InputForm.propTypes = {
+  submit: PropTypes.func.isRequired,
+  changeGender: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
+};
 
 export default InputForm;

@@ -26,7 +26,7 @@ import WomanIcon from '@mui/icons-material/Woman';
 import TtyIcon from '@mui/icons-material/Tty';
 
 const Row = (props) => {
-  const { user, showItems, ref } = props;
+  const { user, showItems } = props;
   const [open, setOpen] = useState(false);
   const {
     name,
@@ -58,7 +58,7 @@ const Row = (props) => {
         <TableCell className='photo__column' component="th" scope="row">
           {!open && <Avatar alt={name} src={picture.thumbnail} />}
         </TableCell>
-        <TableCell ref={ref}>{name}</TableCell>
+        <TableCell>{name}</TableCell>
         {showItems.gender && (
           <TableCell>{gender === 'male' ? (
             <Tooltip title="Male">
@@ -165,6 +165,7 @@ Row.propTypes = {
     }).isRequired,
     nationality: PropTypes.string.isRequired,
   }).isRequired,
+  showItems: PropTypes.shape().isRequired
 };
 
 export default Row;

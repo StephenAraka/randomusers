@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 import Box from '@mui/material/Box';
@@ -64,6 +65,10 @@ const UsersList = ({ users }) => {
       </Box>
     </Box>
   );
+}
+
+UsersList.propTypes = {
+  users: PropTypes.array.isRequired
 }
 
 export default UsersList;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 
 const CustomButton = ({ disabled, icon, variant, onClick, label }) => {
@@ -13,5 +14,13 @@ const CustomButton = ({ disabled, icon, variant, onClick, label }) => {
     </Button>
   );
 }
+
+CustomButton.propTypes = {
+  disabled: PropTypes.bool,
+  icon: PropTypes.node,
+  variant: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired
+};
 
 export default CustomButton;

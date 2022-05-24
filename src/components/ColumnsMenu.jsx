@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -149,5 +150,10 @@ const ColumnsMenu = ({ itemsToShow, handleSelect }) => {
     </div>
   );
 }
+
+ColumnsMenu.propTypes = {
+  itemsToShow: PropTypes.shape().isRequired,
+  handleSelect: PropTypes.func.isRequired
+};
 
 export default ColumnsMenu;

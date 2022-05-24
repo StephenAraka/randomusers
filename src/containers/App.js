@@ -18,7 +18,6 @@ const App = () => {
   const [randomUsers, setRandomUsers] = useState([]);
   const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [hasMore, setHasMore] = useState(false);
 
   const handleSearch = (countries) => {
     const nationalities = countries.length > 0 ? `&nat=${formatCountries(countries)}` : '';
@@ -60,7 +59,6 @@ const App = () => {
         setRandomUsers(prevUsers => {
           return [...new Set([...prevUsers, ...res.data?.results])]
         })
-        // setHasMore(res.data?.results.length > 0);
         setisLoading(false);
       }))
       .catch((e) => {

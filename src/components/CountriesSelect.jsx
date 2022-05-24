@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -84,5 +85,9 @@ const CountriesSelect = ({ onChange }) => {
     </div>
   );
 }
+
+CountriesSelect.propTypes = {
+  onChange: PropTypes.func.isRequired
+};
 
 export default CountriesSelect;
