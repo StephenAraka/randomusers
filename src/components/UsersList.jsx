@@ -45,7 +45,7 @@ const UsersList = ({ users }) => {
               {showMenuItems.phone && <TableCell className='phone__column'>PHONE</TableCell>}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className='users__table'>
             {users.map((user) => (
               <Row
                 showItems={showMenuItems}
