@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/randomusers/static/css/main.21df5ed2.css",
+    "main.js": "/randomusers/static/js/main.db95f674.js",
+    "static/js/787.031dfbfb.chunk.js": "/randomusers/static/js/787.031dfbfb.chunk.js",
+    "index.html": "/randomusers/index.html",
+    "main.21df5ed2.css.map": "/randomusers/static/css/main.21df5ed2.css.map",
+    "main.db95f674.js.map": "/randomusers/static/js/main.db95f674.js.map",
+    "787.031dfbfb.chunk.js.map": "/randomusers/static/js/787.031dfbfb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21df5ed2.css",
+    "static/js/main.db95f674.js"
+  ]
+}
